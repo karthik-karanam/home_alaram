@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - '3307:3306'  # Change the host port to 3307
+
+  email-scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
